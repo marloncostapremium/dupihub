@@ -1832,14 +1832,16 @@ function addLanc(){
   const mes=g('e-mes'),data=g('e-dat');
   const val=parseFloat(g('e-val'))||0;
   const status='Pago'; // RN é sempre Pago
+  // Em modo edição, pular validações opcionais
+  const _em = window._editMode;
   if(!ger){showError('Selecione o Gerente Regional.');return}
   if(!cons){showError('Selecione o Consultor.');return}
-  if(!ind){showError('Selecione a Indicação.');return}
-  if(!fra){showError('Selecione a Franquia.');return}
-  if(!tipo){showError('Selecione o Tipo de RN (Almoço, Jantar ou Café).');return}
+  if(!ind && !_em){showError('Selecione a Indicação.');return}
+  if(!fra && !_em){showError('Selecione a Franquia.');return}
+  if(!tipo && !_em){showError('Selecione o Tipo de RN.');return}
   if(!mes){showError('Selecione o Mês.');return}
-  if(!data){showError('Informe a Data do lançamento.');document.getElementById('e-dat').focus();return}
-  if(!val){showError('Informe o Valor Investido.');return}
+  if(!data){showError('Informe a Data.');document.getElementById('e-dat').focus();return}
+  if(!val){showError('Informe o Valor.');return}
   const lanc = {ger,cons,ind,fra,tipo,tipoAp:'',soc:'',verba,medico,status,mes,data,val,_tipo_origem:'rn',_id:null};
   // Se modo edição, remover item anterior
   if(window._editMode && _editOldItem){
@@ -1890,12 +1892,12 @@ function openEditModal(source, idx){
     const el = document.getElementById(id);
     if(el){ el.value = v || ''; }
   };
-  set('e-ger',  l.ger);
+  set('e-ger',  l.ger   || 'Marlon Costa');
   set('e-cons', l.cons);
   set('e-ind',  l.ind);
   set('e-fra',  l.fra);
   set('e-tipo', l.tipo);
-  set('e-vrb',  l.verba);
+  set('e-vrb',  l.verba || 'Verba Regional');
   set('e-mes',  l.mes);
   set('e-dat',  l.data);
   set('e-val',  l.val);

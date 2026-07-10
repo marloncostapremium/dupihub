@@ -1901,8 +1901,16 @@ function openEditModal(source, idx){
   if(!l){ alert('Item não encontrado. Recarregue a página.'); return; }
   _editOldItem = {...l};
 
-  const isRN = !l._tipo_origem || l._tipo_origem==='rn' ||
-    ['Almoço','Jantar','Café','Refeição de Negócios (RN)'].includes(l.tipo);
+  // RN = Almoço, Jantar, Café, Refeição de Negócios
+  // EVT = Speaker Meetings, Apoio Sociedade, Coffee Break, Apoio Prestador
+  const RN_TIPOS = ['Almoço','Jantar','Café','Refeição de Negócios (RN)'];
+  const EVT_TIPOS = ['Speaker Meetings','Apoio Sociedade','Coffee Break','Apoio Prestador','Jornada Regional','Jornada Itinerante'];
+  let isRN;
+  if(l._tipo_origem === 'rn') isRN = true;
+  else if(l._tipo_origem === 'evento') isRN = false;
+  else if(RN_TIPOS.includes(l.tipo)) isRN = true;
+  else if(EVT_TIPOS.includes(l.tipo)) isRN = false;
+  else isRN = true; // default
 
   // Ir para aba Lançar Verba
   document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));

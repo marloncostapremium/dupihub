@@ -6,7 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DupiHub — Controle de Verba Regional 2026</title>
+<title>Planilha Digital — Governança 2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script>Chart.register(ChartDataLabels); Chart.defaults.set("plugins.datalabels", {display: false});</script>
@@ -76,7 +76,7 @@ footer strong{color:var(--ac)}
 <body>
 
 <div class="hdr">
-  <div><div class="logo">DUPI<span>HUB</span></div><div class="hsub">Controle de Verba 2026</div></div>
+  <div><div class="logo">Planilha <span>Digital</span></div><div class="hsub">Governança 2026</div></div>
   <div class="hbtns">
     <!-- GLOBAL LOCK BADGE -->
     <div id="globalBadge" onclick="showGlobalPwModal()" title="Clique para desbloquear o app"
@@ -123,7 +123,7 @@ footer strong{color:var(--ac)}
 <div id="globalPwModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;z-index:99999;align-items:center;justify-content:center;padding:1rem">
   <div style="background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:2rem 1.8rem;max-width:340px;width:100%;text-align:center;box-shadow:0 8px 40px #0008">
     <div style="font-size:2rem;margin-bottom:.5rem">🔐</div>
-    <div style="font-size:1.2rem;font-weight:800;color:var(--wh);margin-bottom:.3rem;letter-spacing:.04em">DUPI<span style="color:var(--ac)">HUB</span></div>
+    <div style="font-size:1.2rem;font-weight:800;color:var(--wh);margin-bottom:.3rem;letter-spacing:.04em">Planilha <span style="color:var(--ac)">Digital</span></div>
     <div style="font-size:.75rem;color:var(--mu);margin-bottom:1.4rem" id="pwModalMsg">Digite a senha para acessar o aplicativo.<br>Não será necessário digitar novamente neste dispositivo.</div>
 
     <!-- Tela de senha -->
@@ -175,7 +175,7 @@ footer strong{color:var(--ac)}
   <div class="g1"><div class="cc"><div class="ct">Pago · Comprometido · Saldo por Franquia</div><div style="height:215px"><canvas id="cWater"></canvas></div></div></div>
   <div class="g2">
     <div class="cc"><div class="ct">Pago × Planejado por Trimestre</div><div style="height:195px"><canvas id="cQtr"></canvas></div></div>
-    <div class="cc"><div class="ct">Comprometido por Franquia</div><div style="height:195px"><canvas id="cPie1"></canvas></div></div>
+    <div class="cc"><div class="ct">Comprometido por Franquia</div><div style="height:235px;display:flex;align-items:center;justify-content:center"><canvas id="cPie1"></canvas></div></div>
   </div>
   <div class="stit">Lançamentos por Tipo de Investimento</div>
   <div class="g3">
@@ -215,7 +215,7 @@ footer strong{color:var(--ac)}
   <div class="stit" style="margin-top:1rem">Distribuição por Franquia</div>
   <div class="g2">
     <div class="cc"><div class="ct">Pago × Planejado por Franquia</div><div style="height:215px"><canvas id="cBarH"></canvas></div></div>
-    <div class="cc"><div class="ct">Distribuição % — Donut</div><div style="height:215px"><canvas id="cDonut"></canvas></div></div>
+    <div class="cc"><div class="ct">Distribuição % — Donut</div><div style="height:295px;display:flex;align-items:center;justify-content:center"><canvas id="cDonut"></canvas></div></div>
   </div>
   <div class="stit">Evolução Mensal</div>
   <div class="g1"><div class="cc"><div class="ct">Evolução Mensal por Franquia</div><div style="height:200px"><canvas id="cLine"></canvas></div></div></div>
@@ -560,7 +560,7 @@ footer strong{color:var(--ac)}
       <div>
         <div style="font-size:.7rem;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.3rem">Referência</div>
         <div style="font-size:1.4rem;font-weight:700;color:var(--wh)">Centro de Custos <span style="color:var(--mu);font-weight:400">&</span> WBS</div>
-        <div style="font-size:.75rem;color:var(--mu);margin-top:.2rem">Força de Vendas 2026 — RJ/ES Marlon Costa</div>
+        <div style="font-size:.75rem;color:var(--mu);margin-top:.2rem"></div>
       </div>
       <button onclick="showPage('dash',null)" style="background:var(--sf2);border:1px solid var(--bd);color:var(--mu);border-radius:7px;padding:.35rem .8rem;cursor:pointer;font-size:.75rem">← Voltar</button>
     </div>
@@ -600,7 +600,7 @@ footer strong{color:var(--ac)}
     </div>
 
     <!-- WBS REGIONAIS -->
-    <div class="stit" style="margin-bottom:.6rem">WBS Regionais — Força de Vendas 2026</div>
+    <div class="stit" style="margin-bottom:.6rem">WBS Regionais — </div>
 
     <div id="wbsTable" style="display:flex;flex-direction:column;gap:.5rem">
 
@@ -615,7 +615,7 @@ footer strong{color:var(--ac)}
       <div style="display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;background:var(--sf2);border:1px solid #0891b233;border-radius:10px;padding:.8rem 1.1rem">
         <div>
           <div style="font-size:.68rem;font-weight:700;color:#0891b2;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem">Verba Regional · 🌬️ Resp</div>
-          <div style="font-size:.9rem;font-weight:600;color:var(--wh)">RESP — RJ/ES Marlon</div>
+          <div style="font-size:.9rem;font-weight:600;color:var(--wh)">RESP — SE/NE Marlon</div>
         </div>
         <div style="font-size:.72rem;font-family:monospace;font-weight:700;color:#0891b2;background:#0891b211;border:1px solid #0891b233;border-radius:6px;padding:.3rem .7rem;white-space:nowrap">DPC-SFBRDUP26-00000000070</div>
       </div>
@@ -623,7 +623,7 @@ footer strong{color:var(--ac)}
       <div style="display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;background:var(--sf2);border:1px solid #a855f733;border-radius:10px;padding:.8rem 1.1rem">
         <div>
           <div style="font-size:.68rem;font-weight:700;color:#a855f7;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem">Verba Regional · 👃 Rino</div>
-          <div style="font-size:.9rem;font-weight:600;color:var(--wh)">NP — RJ/ES Marlon</div>
+          <div style="font-size:.9rem;font-weight:600;color:var(--wh)">NP — SE/NE Marlon</div>
         </div>
         <div style="font-size:.72rem;font-family:monospace;font-weight:700;color:#a855f7;background:#a855f711;border:1px solid #a855f733;border-radius:6px;padding:.3rem .7rem;white-space:nowrap">DPC-SFBRDUN26-00000000007</div>
       </div>
@@ -681,7 +681,7 @@ footer strong{color:var(--ac)}
     <div><label>UF <span style="color:#c62828">*</span></label>
       <select id="vg-uf" onchange="onUfChange()">
         <option value="">Selecione...</option>
-        <optgroup label="Região (RJ/ES/MG + Nordeste)">
+        <optgroup label="Região (SE/NE/MG + Nordeste)">
           <option value="RJ">RJ — Rio de Janeiro</option>
           <option value="ES">ES — Espírito Santo</option>
           <option value="MG">MG — Minas Gerais</option>
@@ -855,7 +855,7 @@ function mk(id,type,data,opt){
 
 // ── SENHA GLOBAL DO APP ───────────────────────────────────────────────────────
 const APP_PW  = 'Rino2026!Resp#';
-const APP_KEY = 'dupihub_app_auth_v8';
+const APP_KEY = 'planilha-digital_app_auth_v8';
 
 function isAppUnlocked(){
   return localStorage.getItem(APP_KEY) === '1';
@@ -1151,7 +1151,34 @@ function waterfall(){mk('cWater','bar',{labels:FR,datasets:[{label:'Pago',data:F
 
 function quarters(){const ds=[];FR.forEach(f=>{ds.push({label:f+' Pago',data:D.qtr.pago[f],backgroundColor:FC[f],stack:f});ds.push({label:f+' Plan',data:D.qtr.plan[f],backgroundColor:FL[f],stack:f,borderWidth:1,borderColor:FC[f]})});mk('cQtr','bar',{labels:QQ,datasets:ds},{scales:AX})}
 
-function pie1(){mk('cPie1','pie',{labels:FR,datasets:[{data:FR.map(f=>D.comp[f]),backgroundColor:FR.map(f=>FL[f]),borderColor:'#1a1d27',borderWidth:2}]},{plugins:{legend:{position:'right',labels:{color:'#8890b0',font:{size:9},boxWidth:9}},tooltip:{callbacks:{label:c=>`${c.label}: ${f0(c.raw)}`}}}})}
+function pie1(){
+  const total = FR.reduce((s,f)=>s+(D.comp[f]||0),0);
+  const el = document.getElementById('cPie1');
+  if(!el) return;
+  if(el._chartInstance){ el._chartInstance.destroy(); el._chartInstance=null; }
+  el._chartInstance = new Chart(el.getContext('2d'),{
+    type:'pie',
+    data:{labels:FR,datasets:[{data:FR.map(f=>D.comp[f]||0),backgroundColor:FR.map(f=>FL[f]),borderColor:'#1a1d27',borderWidth:2}]},
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{position:'right',labels:{color:'#8890b0',font:{size:9},boxWidth:9}},
+        tooltip:{callbacks:{label:c=>`${c.label}: ${f0(c.raw)} (${total?fp(c.raw/total):'0%'})`}},
+        datalabels:{
+          display:true,
+          color:'#ffffff',
+          font:{size:13,weight:'bold'},
+          textStrokeColor:'#000000',
+          textStrokeWidth:4,
+          textShadowBlur:6,
+          textShadowColor:'rgba(0,0,0,0.9)',
+          formatter:(val)=>{ const p=total?Math.round(val/total*100):0; return p>3?p+'%':''; }
+        }
+      }
+    },
+    plugins:[ChartDataLabels]
+  });
+}
 
 function barH(){
   mk('cBarH','bar',{
@@ -1192,9 +1219,8 @@ function barH(){
           generateLabels: ()=>[
             {text:'Orçamento',           fillStyle:'transparent', strokeStyle:'#8890b0', lineWidth:2, fontColor:'#8890b0', textColor:'#8890b0', color:'#8890b0'},
             {text:'Resp — Pago/Plan',    fillStyle:FL['Resp'],   strokeStyle:FL['Resp'],   fontColor:'#8890b0', textColor:'#8890b0', color:'#8890b0'},
-            {text:'Derma — Pago/Plan',   fillStyle:FL['Derma'],  strokeStyle:FL['Derma'],  fontColor:'#8890b0', textColor:'#8890b0', color:'#8890b0'},
-            {text:'Rhyno — Pago/Plan',   fillStyle:FL['Rhyno'],  strokeStyle:FL['Rhyno'],  fontColor:'#8890b0', textColor:'#8890b0', color:'#8890b0'},
-            {text:'Gastro — Pago/Plan',  fillStyle:FL['Gastro'], strokeStyle:FL['Gastro'], fontColor:'#8890b0', textColor:'#8890b0', color:'#8890b0'},
+            {text:'Rino — Pago/Plan',    fillStyle:FL['Rino'],   strokeStyle:FL['Rino'],   fontColor:'#8890b0', textColor:'#8890b0', color:'#8890b0'},
+            
           ]
         }
       },
@@ -1205,14 +1231,47 @@ function barH(){
 
 function donut(){
   const total = FR.reduce((s,f)=>s+(D.comp[f]||0),0);
-  mk('cDonut','doughnut',
-    {labels:FR,datasets:[{data:FR.map(f=>D.comp[f]||0),backgroundColor:FR.map(f=>FL[f]),borderColor:'#1a1d27',borderWidth:3,hoverOffset:8}]},
-    {plugins:{
-      legend:{position:'right',labels:{color:'#8890b0',font:{size:9},boxWidth:9}},
-      tooltip:{callbacks:{label:c=>`${c.label}: ${f0(c.raw)} (${total?fp(c.raw/total):'0%'})`}},
-      datalabels:{display:true,color:'#ffffff',font:{size:12,weight:'bold'},textStrokeColor:'rgba(0,0,0,0.6)',textStrokeWidth:3,formatter:(val)=>{ const p=total?Math.round(val/total*100):0; return p>3?p+'%':''; }}
-    },cutout:'58%'}
-  );
+  const chartEl = document.getElementById('cDonut');
+  if(!chartEl) return;
+  // Destruir instância anterior se existir
+  if(chartEl._chartInstance) { chartEl._chartInstance.destroy(); chartEl._chartInstance = null; }
+  const ctx = chartEl.getContext('2d');
+  chartEl._chartInstance = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: FR,
+      datasets:[{
+        data: FR.map(f=>D.comp[f]||0),
+        backgroundColor: FR.map(f=>FL[f]),
+        borderColor:'#1a1d27',
+        borderWidth:3,
+        hoverOffset:8
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      cutout:'58%',
+      plugins:{
+        legend:{position:'right',labels:{color:'#8890b0',font:{size:9},boxWidth:9}},
+        tooltip:{callbacks:{label:c=>`${c.label}: ${f0(c.raw)} (${total?fp(c.raw/total):'0%'})`}},
+        datalabels:{
+          display: true,
+          color: '#ffffff',
+          font: {size:13, weight:'bold'},
+          textShadowBlur: 6,
+          textShadowColor: 'rgba(0,0,0,0.9)',
+          textStrokeColor: '#000000',
+          textStrokeWidth: 4,
+          formatter: (val) => {
+            const p = total ? Math.round(val/total*100) : 0;
+            return p > 3 ? p + '%' : '';
+          }
+        }
+      }
+    },
+    plugins:[ChartDataLabels]
+  });
 }
 
 function line(){mk('cLine','line',{labels:MN,datasets:FR.map(f=>({label:f,data:D.monthly[f],borderColor:FC[f],backgroundColor:FC[f]+'33',pointBackgroundColor:FC[f],tension:.35,fill:false,pointRadius:3}))},{scales:AX})}
@@ -1286,7 +1345,7 @@ function consTable(){
   Object.entries(D.cons).forEach(([c,d])=>{
     const plan=Math.max(d.comp-d.pago,0);
     const tot=d.pago+plan;
-    h+=`<tr><td>${c}</td><td class="nr" style="color:#1d9e75">${f2(d.pago)}</td><td class="nr" style="color:#ba7517">${f2(plan)}</td><td class="nr">${f2(tot)}</td><td class="nr">${fp(tO?tot/tO:0)}</td></tr>`;
+    h+=`<tr><td>${c.split(" ")[0]}</td><td class="nr" style="color:#1d9e75">${f2(d.pago)}</td><td class="nr" style="color:#ba7517">${f2(plan)}</td><td class="nr">${f2(tot)}</td><td class="nr">${fp(tO?tot/tO:0)}</td></tr>`;
   });
   const tP=Object.values(D.cons).reduce((s,d)=>s+d.pago,0);
   const tPl=Object.values(D.cons).reduce((s,d)=>s+Math.max(d.comp-d.pago,0),0);
@@ -2072,7 +2131,7 @@ function renderLanc(){
     // Edit button available for ALL statuses and types
     const editBtn = `<button onclick="openEditModal('${src}',${idx})" title="Editar" style="background:#185fa522;border:1px solid #185fa544;color:#93c5fd;border-radius:4px;cursor:pointer;font-size:.8rem;padding:.2rem .4rem;margin-right:.2rem">✏️</button>`;
     return `<tr style="background:${rowBg}">
-    <td>${tipoBadge} ${l.cons||'—'}</td>
+    <td>${tipoBadge} ${(l.cons||'—').split(" ")[0]}</td>
     <td>${l.ind||'—'}</td>
     <td><span class="bx b-${(l.fra||'').toLowerCase()}">${l.fra||'—'}</span></td>
     <td style="font-size:.72rem">${l.tipo||'—'}${l.tipoAp?' · '+l.tipoAp:''}</td>
@@ -2134,10 +2193,10 @@ function saveOrc(){
     D.orc[f]=v; D.saldo[f]=v-D.comp[f]; D.pct[f]=D.comp[f]/(v||1);
   });
   // Persiste no localStorage para não perder ao recarregar
-  localStorage.setItem('dupihub_budget', JSON.stringify(D.orc));
+  localStorage.setItem('planilha-digital_budget', JSON.stringify(D.orc));
   buildAll();
   // Envia para Google Sheets
-  const url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(url){
     const params = {
       action:'saveBudget',
@@ -2160,7 +2219,7 @@ function saveOrc(){
 function loadBudget(){
   // Carrega budget do localStorage se disponível
   try {
-    const saved = localStorage.getItem('dupihub_budget');
+    const saved = localStorage.getItem('planilha-digital_budget');
     if(saved){
       const b = JSON.parse(saved);
       FR.forEach(f=>{ if(b[f]) { D.orc[f]=b[f]; D.saldo[f]=D.orc[f]-D.comp[f]; D.pct[f]=D.comp[f]/(D.orc[f]||1); }});
@@ -2201,14 +2260,14 @@ function exportExcel(){
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([h,...rows]),'Lançamentos');
   const hF=['Franquia','Orçamento','Pago','Planejado','Comprometido','Saldo','%'];
   XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([hF,...FR.map(f=>[f,D.orc[f],D.pago[f],D.plan[f],D.comp[f],D.saldo[f],fp(D.pct[f])])]),'Resumo Franquia');
-  XLSX.writeFile(wb,'DupiHub_Relatorio.xlsx');
+  XLSX.writeFile(wb,'Planilha Digital_Relatorio.xlsx');
 }
 
 function exportWord(){
   const rows=allLancs().map(l=>`<tr><td>${l.ger||'—'}</td><td>${l.cons}</td><td>${l.ind||'—'}</td><td>${l.fra||'—'}</td><td>${l.tipo||'—'}</td><td>${l.tipoAp||'—'}</td><td>${l.soc||'—'}</td><td>${l.verba||'—'}</td><td>${l.status||'—'}</td><td>${l.mes||'—'}</td><td>${l.data||'—'}</td><td>R$ ${l.val.toFixed(2)}</td></tr>`).join('');
   const fr=FR.map(f=>`<tr><td>${f}</td><td>R$ ${D.orc[f].toLocaleString('pt-BR')}</td><td>R$ ${D.pago[f].toLocaleString('pt-BR')}</td><td>R$ ${D.comp[f].toLocaleString('pt-BR')}</td><td>R$ ${D.saldo[f].toLocaleString('pt-BR')}</td><td>${fp(D.pct[f])}</td></tr>`).join('');
   const htm=`<html><head><meta charset="UTF-8"><style>body{font-family:Arial;font-size:10pt;margin:2cm}h1{color:#1d9e75;font-size:14pt}h2{color:#185fa5;font-size:11pt;margin-top:16px}table{width:100%;border-collapse:collapse;font-size:8pt;margin-top:5px}th{background:#1a1a2e;color:white;padding:3px 5px;text-align:left}td{padding:3px 5px;border-bottom:1px solid #ddd}tr:nth-child(even)td{background:#f5f5f5}.ft{margin-top:24px;font-size:8pt;color:#888;text-align:center}</style></head><body>
-  <h1>DupiHub — Relatório Verba Regional 2026</h1><p style="color:#888;font-size:8pt">GR Marlon Costa · ${new Date().toLocaleDateString('pt-BR')}</p>
+  <h1>Planilha Digital — Relatório Verba Regional 2026</h1><p style="color:#888;font-size:8pt">GR Marlon Costa · ${new Date().toLocaleDateString('pt-BR')}</p>
   <h2>Resumo por Franquia</h2><table><thead><tr><th>Franquia</th><th>Orçamento</th><th>Pago</th><th>Comprometido</th><th>Saldo</th><th>%</th></tr></thead><tbody>${fr}</tbody></table>
   <h2>Lançamentos (${allLancs().length})</h2><table><thead><tr><th>Gerente</th><th>Consultor</th><th>Indicação</th><th>Franquia</th><th>Tipo</th><th>Apoio</th><th>Sociedade</th><th>Verba</th><th>Status</th><th>Mês</th><th>Data</th><th>Valor</th></tr></thead><tbody>${rows||'<tr><td colspan="12" style="text-align:center">Sem lançamentos</td></tr>'}</tbody></table>
   <div class="ft"></div>
@@ -2328,7 +2387,7 @@ function exportWord(){
 
 
 </body></html>`;
-  const b=new Blob([htm],{type:'application/msword'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='DupiHub_Relatorio.doc';a.click();
+  const b=new Blob([htm],{type:'application/msword'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='Planilha Digital_Relatorio.doc';a.click();
 }
 
 function exportPDF(){window.print();}
@@ -2337,8 +2396,8 @@ function exportPDF(){window.print();}
 // Cole aqui a URL gerada pelo Google Apps Script após implantar:
 const _DEFAULT_API = 'https://script.google.com/macros/s/AKfycbwet052_xV1OrbyyYjzFl-sHqr8a7fgxhFWUDpBN1nGlIcZQQqhOFqPPJiwOkZiwDKc/exec';
 // Sempre garante que a URL correta está salva no localStorage
-if(!localStorage.getItem('dupihub_api_url') || localStorage.getItem('dupihub_api_url').indexOf('AKfycbwet052') === -1){
-  localStorage.setItem('dupihub_api_url', _DEFAULT_API);
+if(!localStorage.getItem('planilha-digital_api_url') || localStorage.getItem('planilha-digital_api_url').indexOf('AKfycbwet052') === -1){
+  localStorage.setItem('planilha-digital_api_url', _DEFAULT_API);
 }
 let API_URL = _DEFAULT_API;
 
@@ -2346,7 +2405,7 @@ function setApiUrl(){
   const url = prompt('Cole a URL do Google Apps Script:');
   if(url && url.startsWith('https://')){
     API_URL = url.trim();
-    localStorage.setItem('dupihub_api_url', API_URL);
+    localStorage.setItem('planilha-digital_api_url', API_URL);
     setBanner('🔗 API conectada! Carregando dados...', '#1d9e75');
     loadFromSheets();
   } else if(url !== null){
@@ -2361,7 +2420,7 @@ function setBanner(msg, color){
 
 // Carrega todos os lançamentos do Google Sheets ao abrir
 async function loadFromSheets(silent=false){
-  const _url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const _url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(!_url){ if(!silent) setBanner('⚠️ API não configurada.','#ba7517'); return; }
   API_URL = _url;
   if(!silent) setBanner('🔄 Carregando dados...','#185fa5');
@@ -2417,7 +2476,7 @@ async function loadFromSheets(silent=false){
 
 
 async function gasRequest(params){
-  const url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(!url) return null;
   try {
     const qs = Object.entries(params)
@@ -2434,7 +2493,7 @@ async function gasRequest(params){
 }
 
 async function apiAdd(lancamento){
-  const url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(!url){ setBanner('⚠️ API não configurada.','#ba7517'); return null; }
   API_URL = url;
 
@@ -2522,7 +2581,7 @@ async function apiEdit(id, lancamento){
 
 async function apiDelete(id){
   if(!id) return;
-  const url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(!url) return;
   try {
     const fullUrl = url + '?action=delete&id=' + encodeURIComponent(id);
@@ -2609,7 +2668,7 @@ const CIDADES_V = {
 };
 
 let VIAGENS = [];
-try { VIAGENS = JSON.parse(localStorage.getItem('dupihub_viagens') || '[]'); } catch(e){}
+try { VIAGENS = JSON.parse(localStorage.getItem('planilha-digital_viagens') || '[]'); } catch(e){}
 
 let _vgCalMes = new Date().getMonth();
 let _vgCalAno = new Date().getFullYear();
@@ -2719,7 +2778,7 @@ function salvarViagem(){
   };
 
   VIAGENS.push(viagem);
-  localStorage.setItem('dupihub_viagens', JSON.stringify(VIAGENS));
+  localStorage.setItem('planilha-digital_viagens', JSON.stringify(VIAGENS));
   limparFormViag();
   renderViagemTabela();
   renderViagemCal();
@@ -2749,7 +2808,7 @@ function editarViagem(idx){
   setTimeout(()=>{ const el=document.getElementById('vg-cid'); if(el) el.value=v.cidade||''; }, 50);
   // Remove from list (will be re-added on save)
   VIAGENS.splice(idx, 1);
-  localStorage.setItem('dupihub_viagens', JSON.stringify(VIAGENS));
+  localStorage.setItem('planilha-digital_viagens', JSON.stringify(VIAGENS));
   renderViagemTabela();
   renderViagemCal();
   // Scroll to form
@@ -2762,7 +2821,7 @@ function excluirViagem(idx){
   if(!confirm('Excluir esta viagem?')) return;
   const v = VIAGENS[idx];
   VIAGENS.splice(idx, 1);
-  localStorage.setItem('dupihub_viagens', JSON.stringify(VIAGENS));
+  localStorage.setItem('planilha-digital_viagens', JSON.stringify(VIAGENS));
   // Remove do Google Sheets
   if(v && v.id) apiDeleteViagem(v.id);
   renderViagemTabela();
@@ -2916,7 +2975,7 @@ function vgDayDetail(d){var ano=_vgCalAno,mes=_vgCalMes;var pad=function(n){retu
 
 // ── API VIAGENS ───────────────────────────────────────────────────────────────
 async function apiAddViagem(v){
-  const url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(!url) return;
   try {
     const params = {
@@ -2930,7 +2989,7 @@ async function apiAddViagem(v){
 }
 
 async function apiDeleteViagem(id){
-  const url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(!url || !id) return;
   try {
     await fetch(url+'?action=deleteViagem&id='+encodeURIComponent(id), {method:'GET', redirect:'follow'});
@@ -2938,7 +2997,7 @@ async function apiDeleteViagem(id){
 }
 
 async function loadViagensFromSheets(){
-  const url = localStorage.getItem('dupihub_api_url') || _DEFAULT_API;
+  const url = localStorage.getItem('planilha-digital_api_url') || _DEFAULT_API;
   if(!url) return;
   try {
     setBanner('🔄 Carregando viagens...','#185fa5');
@@ -2950,7 +3009,7 @@ async function loadViagensFromSheets(){
       const serverIds = new Set(json.data.map(v=>v.id));
       const localOnly = VIAGENS.filter(v => !serverIds.has(v.id));
       VIAGENS = [...json.data, ...localOnly];
-      localStorage.setItem('dupihub_viagens', JSON.stringify(VIAGENS));
+      localStorage.setItem('planilha-digital_viagens', JSON.stringify(VIAGENS));
       setBanner('✅ '+VIAGENS.length+' viagem(ns) carregada(s).','#1d9e75');
     } else {
       setBanner('','#1d9e75');
@@ -2977,26 +3036,26 @@ function exportWbsExcel(){
   const data = [
     ['Tipo','Descrição','Código WBS'],
     ['Tutoria · Resp','Resp (Asma & DPOC)','DPC-SFBRDUP26-00000000008'],
-    ['Verba Regional · Resp','RESP — RJ/ES Marlon','DPC-SFBRDUP26-00000000070'],
-    ['Verba Regional · Rino','NP — RJ/ES Marlon','DPC-SFBRDUN26-00000000007'],
+    ['Verba Regional · Resp','RESP — SE/NE Marlon','DPC-SFBRDUP26-00000000070'],
+    ['Verba Regional · Rino','NP — SE/NE Marlon','DPC-SFBRDUN26-00000000007'],
   ];
   const ws = XLSX.utils.aoa_to_sheet(data);
   ws['!cols'] = [{wch:25},{wch:25},{wch:35}];
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'WBS');
-  XLSX.writeFile(wb, 'DupiHub_WBS.xlsx');
+  XLSX.writeFile(wb, 'Planilha Digital_WBS.xlsx');
 }
 
 function exportWbsPDF(){
   const rows = [
     ['Tutoria · Resp','Resp (Asma & DPOC)','DPC-SFBRDUP26-00000000008'],
-    ['Verba Regional · Resp','RESP — RJ/ES Marlon','DPC-SFBRDUP26-00000000070'],
-    ['Verba Regional · Rino','NP — RJ/ES Marlon','DPC-SFBRDUN26-00000000007'],
+    ['Verba Regional · Resp','RESP — SE/NE Marlon','DPC-SFBRDUP26-00000000070'],
+    ['Verba Regional · Rino','NP — SE/NE Marlon','DPC-SFBRDUN26-00000000007'],
   ];
   const w = window.open('','_blank');
   if(!w) return;
-  w.document.write('<html><head><title>WBS DupiHub</title><style>body{font-family:Arial;padding:24px}h2{color:#16a34a}table{border-collapse:collapse;width:100%}th{background:#16a34a;color:#fff;padding:8px 12px;text-align:left}td{padding:8px 12px;border-bottom:1px solid #ddd}code{font-size:13px;color:#0891b2}</style></head><body>');
-  w.document.write('<h2>WBS Regionais — Força de Vendas 2026</h2>');
+  w.document.write('<html><head><title>WBS Planilha Digital</title><style>body{font-family:Arial;padding:24px}h2{color:#16a34a}table{border-collapse:collapse;width:100%}th{background:#16a34a;color:#fff;padding:8px 12px;text-align:left}td{padding:8px 12px;border-bottom:1px solid #ddd}code{font-size:13px;color:#0891b2}</style></head><body>');
+  w.document.write('<h2>WBS Regionais — </h2>');
   w.document.write('<table><thead><tr><th>Tipo</th><th>Descrição</th><th>Código WBS</th></tr></thead><tbody>');
   rows.forEach(r=>{ w.document.write('<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td><code>'+r[2]+'</code></td></tr>'); });
   w.document.write('</tbody></table></body></html>');
@@ -3005,14 +3064,14 @@ function exportWbsPDF(){
 }
 
 function exportWbsWord(){
-  const content = 'WBS Regionais — Força de Vendas 2026\n\n'
+  const content = 'WBS Regionais — \n\n'
     + 'Tutoria · Resp\nResp (Asma & DPOC)\nDPC-SFBRDUP26-00000000008\n\n'
-    + 'Verba Regional · Resp\nRESP — RJ/ES Marlon\nDPC-SFBRDUP26-00000000070\n\n'
-    + 'Verba Regional · Rino\nNP — RJ/ES Marlon\nDPC-SFBRDUN26-00000000007\n';
+    + 'Verba Regional · Resp\nRESP — SE/NE Marlon\nDPC-SFBRDUP26-00000000070\n\n'
+    + 'Verba Regional · Rino\nNP — SE/NE Marlon\nDPC-SFBRDUN26-00000000007\n';
   const blob = new Blob([content], {type:'application/msword'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'DupiHub_WBS.doc';
+  a.download = 'Planilha Digital_WBS.doc';
   a.click();
 }
 
@@ -3047,8 +3106,8 @@ window.addEventListener('load',()=>{
 });
 
 // ── Biometria (WebAuthn) ─────────────────────────────────────────────────
-const BIO_KEY      = 'dupihub_bio_enrolled';
-const BIO_CRED_KEY = 'dupihub_bio_credId';
+const BIO_KEY      = 'planilha-digital_bio_enrolled';
+const BIO_CRED_KEY = 'planilha-digital_bio_credId';
 
 function showPwStep(){
   document.getElementById('pwStep').style.display = 'block';
@@ -3076,7 +3135,7 @@ async function enrollBiometric(){
     const cred = await navigator.credentials.create({
       publicKey:{
         challenge,
-        rp:{ name:'DupiHub', id: location.hostname },
+        rp:{ name:'Planilha Digital', id: location.hostname },
         user:{ id: new Uint8Array(16), name:'marlon', displayName:'Marlon Costa' },
         pubKeyCredParams:[{type:'public-key', alg:-7},{type:'public-key', alg:-257}],
         authenticatorSelection:{ userVerification:'required', authenticatorAttachment:'platform' },

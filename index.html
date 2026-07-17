@@ -2957,10 +2957,22 @@ function renderViagemCal(){
 
   // Build map: day -> [{cons, uf, cidade}]
   const dayMap = {};
+  // Helper: parse date string robustly (handles YYYY-MM-DD, ISO, DD/MM/YYYY)
+  const parseVgDate = s => {
+    if(!s) return null;
+    s = String(s).trim();
+    const m1 = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if(m1) return new Date(+m1[1], +m1[2]-1, +m1[3]);
+    const m2 = s.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+    if(m2) return new Date(+m2[3], +m2[2]-1, +m2[1]);
+    const dt = new Date(s); return isNaN(dt.getTime()) ? null : dt;
+  };
+
   VIAGENS.forEach(v => {
     if(!v.ida || !v.ret) return;
-    const d1 = new Date(v.ida + 'T12:00:00');
-    const d2 = new Date(v.ret + 'T12:00:00');
+    const d1 = parseVgDate(v.ida);
+    const d2 = parseVgDate(v.ret);
+    if(!d1 || !d2) return;
     for(let cur = new Date(d1); cur <= d2; cur.setDate(cur.getDate()+1)){
       if(cur.getFullYear()===ano && cur.getMonth()===mes){
         const day = cur.getDate();
@@ -3026,12 +3038,21 @@ function renderViagemResumo(){
     'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
   // Format date as "Qui Ago 06" using PT abbreviations
   const DIAS_SEM_R = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  const MESES_ABR  = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  // Formata qualquer string de data para "Qui 06"
   const fmtPT = d => {
-    if(!d) return '—';
-    const [a,m,dd] = d.split('-').map(Number);
-    const dt = new Date(a, m-1, dd);
-    return `${DIAS_SEM_R[dt.getDay()]} ${MESES_ABR[m-1]} ${String(dd).padStart(2,'0')}`;
+    if(!d || d === '\u2014') return '\u2014';
+    const s = String(d).trim();
+    let dt;
+    const m1 = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if(m1){ dt = new Date(+m1[1], +m1[2]-1, +m1[3]); }
+    else {
+      const m2 = s.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+      if(m2){ dt = new Date(+m2[3], +m2[2]-1, +m2[1]); }
+      else { dt = new Date(s); }
+    }
+    if(!dt || isNaN(dt.getTime())) return s;
+    const dia = String(dt.getDate()).padStart(2,'0');
+    return DIAS_SEM_R[dt.getDay()] + ' ' + dia;
   };
   const getMes = ida => {
     if(!ida) return '—';
@@ -3173,7 +3194,17 @@ async function loadViagensFromSheets(){
     const normalized = arr.map(v => {
       // Suporte a qualquer variação de nome de campo
       const getField = (...keys) => { for(const k of keys){ if(v[k] !== undefined && v[k] !== null && v[k] !== '') return String(v[k]); } return ''; };
-      const normDate = d => { if(!d) return ''; return String(d).replace('T',' ').substring(0,10); };
+      const normDate = d => {
+        if(!d) return '';
+        const s = String(d).trim();
+        // ISO: 2026-08-06T... or 2026-08-06 ...
+        const m1 = s.match(/^(\d{4}-\d{2}-\d{2})/);
+        if(m1) return m1[1];
+        // DD/MM/YYYY
+        const m2 = s.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+        if(m2) return `${m2[3]}-${m2[2]}-${m2[1]}`;
+        return s.substring(0,10);
+      };
       return {
         id:       getField('id','ID'),
         cons:     getField('cons','Consultor','CONSULTOR'),

@@ -2401,9 +2401,9 @@ function exportPDF(){window.print();}
 
 // ── INTEGRAÇÃO GOOGLE SHEETS ──────────────────────────────────────────────────
 // Cole aqui a URL gerada pelo Google Apps Script após implantar:
-const _DEFAULT_API = 'https://script.google.com/macros/s/AKfycbwet052_xV1OrbyyYjzFl-sHqr8a7fgxhFWUDpBN1nGlIcZQQqhOFqPPJiwOkZiwDKc/exec';
+const _DEFAULT_API = 'https://script.google.com/macros/s/AKfycbzQdKyM6skEoNBtZhB8q_z_gKEQiy7sHk4sxejdyGyAEn-G7p2MfO7KKd5kZgHS1Lzp/exec';
 // Sempre garante que a URL correta está salva no localStorage
-if(!localStorage.getItem('planilha-digital_api_url') || localStorage.getItem('planilha-digital_api_url').indexOf('AKfycbwet052') === -1){
+if(!localStorage.getItem('planilha-digital_api_url') || localStorage.getItem('planilha-digital_api_url').indexOf('AKfycbzQdKyM6sk') === -1){
   localStorage.setItem('planilha-digital_api_url', _DEFAULT_API);
 }
 let API_URL = _DEFAULT_API;

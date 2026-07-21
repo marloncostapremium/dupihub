@@ -914,6 +914,7 @@ function showGlobalPwModal(){
   if(isAppUnlocked()) return;
   const m = document.getElementById('globalPwModal');
   m.style.display = 'flex';
+  initModalView();
   setTimeout(()=>{ const i=document.getElementById('globalPwInput'); if(i) i.focus(); }, 120);
 }
 
@@ -3432,17 +3433,13 @@ async function triggerBiometric(){
   }
 }
 
-// Mostrar tela correta ao abrir modal
+// Mostrar tela correta ao abrir modal — sempre senha primeiro
 function initModalView(){
-  if(isBioEnrolled() && isBioAvailable()){
-    showBioStep();
-  } else {
-    showPwStep();
-    // Mostrar botão de biometria alternativa se disponível
-    if(isBioAvailable() && isBioEnrolled()){
-      const b = document.getElementById('bioBtnAlt');
-      if(b) b.style.display = 'block';
-    }
+  showPwStep();
+  // Oferecer biometria como botão alternativo se disponível
+  if(isBioAvailable() && isBioEnrolled()){
+    const b = document.getElementById('bioBtnAlt');
+    if(b) b.style.display = 'block';
   }
 }
 

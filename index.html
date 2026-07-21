@@ -847,7 +847,7 @@ function mk(id,type,data,opt){
 }
 
 // ── SENHA GLOBAL DO APP ───────────────────────────────────────────────────────
-const APP_PW  = 'Marlon2026';
+const APP_PW  = 'Rino2026!Resp#';
 const APP_KEY = 'planilha-digital_app_auth_v8';
 
 function isAppUnlocked(){
@@ -2501,7 +2501,6 @@ async function apiAdd(lancamento){
 
   const params = {
     action:'add',
-    sheet:'Lançamentos_S2',
     ger:    lancamento.ger    ||'',
     cons:   lancamento.cons   ||'',
     ind:    lancamento.ind    ||'',
@@ -2530,7 +2529,7 @@ async function apiAdd(lancamento){
     const text = await res.text();
     let json;
     try { json = JSON.parse(text); } catch(e) {}
-    if(json && json.status === 'ok'){
+    if(json && (json.status === 'ok' || json.id || json.status === 'ok')){
       setBanner('✅ Salvo no Google Sheets!','#1d9e75');
       setTimeout(()=>setBanner('',''), 3000);
       return json.id || localId;

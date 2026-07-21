@@ -127,7 +127,7 @@ footer strong{color:var(--ac)}
     <div style="font-size:.75rem;color:var(--mu);margin-bottom:1.4rem" id="pwModalMsg">Digite a senha para acessar o aplicativo.<br>Não será necessário digitar novamente neste dispositivo.</div>
 
     <!-- Tela de senha -->
-    <div id="pwStep">
+    <div id="pwStep" style="display:block">
       <input type="password" id="globalPwInput" placeholder="Digite a senha..."
         style="width:100%;background:var(--sf2);border:1px solid var(--bd);border-radius:8px;padding:.65rem 1rem;color:var(--wh);font-size:.95rem;outline:none;margin-bottom:.7rem;text-align:center;letter-spacing:.08em"
         onkeydown="if(event.key==='Enter') checkGlobalPassword()">
@@ -139,7 +139,7 @@ footer strong{color:var(--ac)}
     </div>
 
     <!-- Tela biometria (após 1º acesso) -->
-    <div id="bioStep" style="display:none">
+    <div id="bioStep" style="display:none;visibility:hidden">
       <div style="font-size:3.5rem;margin:.5rem 0">👆</div>
       <div style="font-size:.85rem;color:var(--wh);margin-bottom:1.2rem">Use sua biometria para acessar</div>
       <button class="btn" onclick="triggerBiometric()" style="width:100%;padding:.6rem;font-size:.9rem;margin-bottom:.6rem">🫆 Biometria / Face ID</button>
@@ -3151,9 +3151,7 @@ function showBioStep(){
   document.getElementById('bioStep').style.display = 'block';
 }
 
-function isBioEnrolled(){
-  return localStorage.getItem(BIO_KEY) === '1' && localStorage.getItem(BIO_CRED_KEY);
-}
+function isBioEnrolled(){ return false; }
 
 function isBioAvailable(){
   return !!(window.PublicKeyCredential && navigator.credentials);
@@ -3217,16 +3215,7 @@ async function triggerBiometric(){
 
 // Mostrar tela correta ao abrir modal
 function initModalView(){
-  if(isBioEnrolled() && isBioAvailable()){
-    showBioStep();
-  } else {
-    showPwStep();
-    // Mostrar botão de biometria alternativa se disponível
-    if(isBioAvailable() && isBioEnrolled()){
-      const b = document.getElementById('bioBtnAlt');
-      if(b) b.style.display = 'block';
-    }
-  }
+  showPwStep();
 }
 
 

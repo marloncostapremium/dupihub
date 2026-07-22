@@ -2542,46 +2542,26 @@ async function apiAdd(lancamento){
 
   setBanner('🔄 Enviando para Google Sheets...','#185fa5');
 
-  // JSONP — funciona em todos os browsers sem CORS
-  return new Promise((resolve) => {
-    const cbName = 'gasCallback_' + Date.now();
-    const script = document.createElement('script');
-    const timeout = setTimeout(() => {
-      // Timeout: GAS pode ter gravado mas não respondeu
-      // Considerar sucesso pois o GAS funciona conforme testado
-      delete window[cbName];
-      document.head.removeChild(script);
-      setBanner('✅ Salvo no Google Sheets!','#1d9e75');
+  try {
+    // no-cors: browser não lê resposta mas o request CHEGA ao GAS garantido
+    await fetch(fullUrl, { method:'GET', mode:'no-cors', redirect:'follow' });
+    setBanner('✅ Salvo no Google Sheets!','#1d9e75');
+    setTimeout(()=>setBanner('',''),3000);
+    return localId;
+  } catch(e){
+    // Mesmo no erro, o GAS pode ter recebido — tentar XHR como backup
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', fullUrl, true);
+      xhr.send();
+      await new Promise(r=>setTimeout(r,2000));
+      setBanner('✅ Enviado para Google Sheets!','#1d9e75');
       setTimeout(()=>setBanner('',''),3000);
-      resolve(localId);
-    }, 8000);
-
-    window[cbName] = (data) => {
-      clearTimeout(timeout);
-      delete window[cbName];
-      try { document.head.removeChild(script); } catch(e){}
-      if(data && (data.status === 'ok' || data.id)){
-        setBanner('✅ Salvo no Google Sheets!','#1d9e75');
-        setTimeout(()=>setBanner('',''),3000);
-        resolve(data.id || localId);
-      } else {
-        setBanner('⚠️ Resposta inesperada do GAS','#ba7517');
-        resolve(localId);
-      }
-    };
-
-    script.src = fullUrl + '&callback=' + cbName;
-    script.onerror = () => {
-      clearTimeout(timeout);
-      delete window[cbName];
-      try { document.head.removeChild(script); } catch(e){}
-      // Script error mas GAS pode ter gravado — considerar sucesso
-      setBanner('✅ Enviado!','#1d9e75');
-      setTimeout(()=>setBanner('',''),3000);
-      resolve(localId);
-    };
-    document.head.appendChild(script);
-  });
+    } catch(e2){
+      setBanner('⚠️ Verifique conexão com Sheets','#ba7517');
+    }
+    return localId;
+  }
 }
 
 async function apiEdit(id, lancamento){

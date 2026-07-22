@@ -1889,15 +1889,19 @@ function addEvento(){
   document.getElementById('ev-val-hint').style.display='none';
 
   renderLanc(); buildAll();
-  // Mostra confirmação imediatamente
+  // Desabilitar botão para evitar duplo clique
+  const btnEvt = document.getElementById('btnLancarEVT');
+  if(btnEvt){ btnEvt.disabled=true; btnEvt.textContent='⏳ Enviando...'; }
+
   showToast(cons, medico||'—', f2(val), tipo, data);
   setBanner('🔄 Enviando para Google Sheets...','#185fa5');
   apiAdd(lanc).then(id=>{
     if(id){ lanc._id=id; lanc.id=id; }
-    else { setBanner('⚠️ Evento salvo localmente — verifique a conexão','#ba7517'); }
+    if(btnEvt){ btnEvt.disabled=false; btnEvt.textContent='✓ Lançar Evento'; }
   }).catch(e=>{
     console.error('apiAdd evento error:', e);
     setBanner('⚠️ Erro ao salvar evento — tente novamente','#ba7517');
+    if(btnEvt){ btnEvt.disabled=false; btnEvt.textContent='✓ Lançar Evento'; }
   });
 }
 
@@ -1945,7 +1949,10 @@ function addLanc(){
   // Mostra confirmação imediatamente
   showToast(cons, medico||'—', f2(val), tipo, data);
   setBanner('🔄 Enviando para Google Sheets...','#185fa5');
+  const btnRN = document.getElementById('btnLancarRN');
+  if(btnRN){ btnRN.disabled=true; btnRN.textContent='⏳ Enviando...'; }
   apiAdd(lanc).then(id=>{
+    if(btnRN){ btnRN.disabled=false; btnRN.textContent='✓ Lançar'; }
     if(id){ lanc._id=id; lanc.id=id; }
     else { setBanner('⚠️ Lançamento salvo localmente — verifique a conexão','#ba7517'); }
   });

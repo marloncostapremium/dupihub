@@ -378,7 +378,7 @@ footer strong{color:var(--ac)}
         <option>Planejado</option><option>Pago</option><option>Adiado</option><option>Cancelado</option>
       </select></div>
     <div><label>Tipo de Investimento <span style="color:#c62828">*</span></label>
-      <select id="ev-tipo" onchange="toggleSociedade()" onchange="onEvTipo()"><option value="">Selecione...</option>
+      <select id="ev-tipo" onchange="onEvTipo()"><option value="">Selecione...</option>
         <option>Speaker Meetings</option><option>Coffee Break</option>
         <option>Apoio Sociedade</option><option>Apoio Prestador</option>
       </select></div>
@@ -1703,40 +1703,45 @@ function onEvTipo(){
   const pa = document.getElementById('ev-palest');
   const so = document.getElementById('ev-soc');
   const ta = document.getElementById('ev-tap');
-  const md = document.getElementById('ev-med') || {value:''};
 
-  const isSpeaker   = t === 'Speaker Meetings';
-  const isCoffee    = t === 'Coffee Break';
-  const isSpeakerCB = isSpeaker || isCoffee;  // Speaker ou Coffee Break — mesmas regras
-  const isPrest     = t === 'Apoio Prestador';
-  const isHcp       = isSpeakerCB;
-  const isSoc       = t === 'Apoio Sociedade';
+  const isSpeaker = t === 'Speaker Meetings';
+  const isSoc     = t === 'Apoio Sociedade';
+  const isPrest   = t === 'Apoio Prestador';
+  const isCoffee  = t === 'Coffee Break';
 
-  // Tipo de Apoio — desabilitar para Speaker e Coffee Break
-  ta.disabled = isSpeakerCB; ta.style.opacity = isSpeakerCB?'0.35':''; ta.style.cursor = isSpeakerCB?'not-allowed':'';
-  if(isSpeakerCB) ta.value = '';
+  // HCPs — habilitado para Speaker Meetings e Apoio Sociedade
+  const hcpOk = isSpeaker || isSoc;
+  hc.disabled = !hcpOk;
+  hc.style.opacity = hcpOk ? '1' : '0.35';
+  hc.style.cursor  = hcpOk ? '' : 'not-allowed';
+  if(!hcpOk) hc.value = '';
 
-  // Prestador — só Apoio Prestador
-  // Prestador — habilitado para Speaker, Coffee Break e Apoio Prestador
-  const prEnabled = isSpeakerCB || isPrest;
-  pr.disabled = !prEnabled; pr.style.opacity = prEnabled?'':'0.35'; pr.style.cursor = prEnabled?'':'not-allowed';
-  if(!prEnabled) pr.value = '';
+  // Palestrantes — habilitado para Speaker Meetings e Apoio Sociedade
+  const palOk = isSpeaker || isSoc;
+  pa.disabled = !palOk;
+  pa.style.opacity = palOk ? '1' : '0.35';
+  pa.style.cursor  = palOk ? '' : 'not-allowed';
+  if(!palOk) pa.value = '';
 
-  // HCPs — Speaker Meetings ou Coffee Break
-  hc.disabled = !isHcp; hc.style.opacity = isHcp?'':'0.35'; hc.style.cursor = isHcp?'':'not-allowed';
-  if(!isHcp) hc.value = '';
+  // Tipo de Apoio — desabilitado para Speaker Meetings
+  ta.disabled = isSpeaker;
+  ta.style.opacity = isSpeaker ? '0.35' : '1';
+  ta.style.cursor  = isSpeaker ? 'not-allowed' : '';
+  if(isSpeaker) ta.value = '';
 
-  // Palestrantes — só Speaker Meetings
-  pa.disabled = !isSpeaker; pa.style.opacity = isSpeaker?'':'0.35'; pa.style.cursor = isSpeaker?'':'not-allowed';
-  if(!isSpeaker) pa.value = '';
+  // Prestador — habilitado para Apoio Prestador e Coffee Break
+  const prOk = isPrest || isCoffee;
+  pr.disabled = !prOk;
+  pr.style.opacity = prOk ? '1' : '0.35';
+  pr.style.cursor  = prOk ? '' : 'not-allowed';
+  if(!prOk) pr.value = '';
 
-  // Médico — HABILITADO para Speaker e Coffee Break (solicitado)
-  md.disabled = false; md.style.opacity = ''; md.style.cursor = '';
-
-  // Sociedade — Apoio Sociedade
-  so.disabled = !isSoc; so.style.opacity = isSoc?'':'0.35';
+  // Sociedade — habilitado para Apoio Sociedade
+  so.disabled = !isSoc;
+  so.style.opacity = isSoc ? '1' : '0.35';
   if(!isSoc) so.value = '';
 
+  toggleSociedade();
   calcEvVal();
 }
 

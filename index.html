@@ -2541,34 +2541,52 @@ async function apiAdd(lancamento){
     obs:    obsExtra          ||''
   };
 
-  const qs = Object.entries(params)
-    .map(([k,v])=>k+'='+encodeURIComponent(String(v??'')))
-    .join('&');
-  const fullUrl = url + '?' + qs;
   const localId = 'L' + Date.now();
-
   setBanner('🔄 Enviando para Google Sheets...','#185fa5');
 
-  try {
-    // no-cors: browser não lê resposta mas o request CHEGA ao GAS garantido
-    await fetch(fullUrl, { method:'GET', mode:'no-cors', redirect:'follow' });
-    setBanner('✅ Salvo no Google Sheets!','#1d9e75');
-    setTimeout(()=>setBanner('',''),3000);
-    return localId;
-  } catch(e){
-    // Mesmo no erro, o GAS pode ter recebido — tentar XHR como backup
-    try {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', fullUrl, true);
-      xhr.send();
-      await new Promise(r=>setTimeout(r,2000));
-      setBanner('✅ Enviado para Google Sheets!','#1d9e75');
-      setTimeout(()=>setBanner('',''),3000);
-    } catch(e2){
-      setBanner('⚠️ Verifique conexão com Sheets','#ba7517');
-    }
-    return localId;
-  }
+  return new Promise((resolve) => {
+    // Criar iframe oculto para receber a resposta sem navegar
+    const iframeId = 'gas_iframe_' + Date.now();
+    const formId   = 'gas_form_'   + Date.now();
+
+    const iframe = document.createElement('iframe');
+    iframe.name  = iframeId;
+    iframe.id    = iframeId;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    // Criar formulário oculto apontando para o iframe
+    const form = document.createElement('form');
+    form.method = 'GET';
+    form.action = url;
+    form.target = iframeId;
+    form.id     = formId;
+    form.style.display = 'none';
+
+    // Adicionar campos
+    Object.entries(params).forEach(([k, v]) => {
+      const input = document.createElement('input');
+      input.type  = 'hidden';
+      input.name  = k;
+      input.value = String(v ?? '');
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+
+    // Submeter e aguardar
+    setTimeout(() => {
+      form.submit();
+      setBanner('✅ Salvo no Google Sheets!', '#1d9e75');
+      setTimeout(() => setBanner('', ''), 3000);
+      // Limpar DOM após 5s
+      setTimeout(() => {
+        try { document.body.removeChild(form); } catch(e){}
+        try { document.body.removeChild(iframe); } catch(e){}
+      }, 5000);
+      resolve(localId);
+    }, 100);
+  });
 }
 
 async function apiEdit(id, lancamento){

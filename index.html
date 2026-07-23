@@ -1703,7 +1703,7 @@ function onEvTipo(){
   const pa = document.getElementById('ev-palest');
   const so = document.getElementById('ev-soc');
   const ta = document.getElementById('ev-tap');
-  const md = document.getElementById('ev-med');
+  const md = document.getElementById('ev-med') || {value:''};
 
   const isSpeaker   = t === 'Speaker Meetings';
   const isCoffee    = t === 'Coffee Break';
@@ -1883,7 +1883,7 @@ function addEvento(){
     const el=document.getElementById(id);
     if(el){el.value='';el.disabled=true;el.style.opacity='0.35';el.style.cursor='not-allowed';}
   });
-  document.getElementById('ev-med').value='';
+  const evMed = document.getElementById('ev-med'); if(evMed) evMed.value='';
   document.getElementById('ev-fra').value='';
   document.getElementById('ev-val').value='';
   document.getElementById('ev-val-hint').style.display='none';
@@ -2087,7 +2087,7 @@ function editEvento(source, idx){
   const s = (id,v)=>{ const el=document.getElementById(id); if(el) el.value=v||''; };
   s('ev-ger',l.ger); s('ev-cons',l.cons); s('ev-ind',l.ind); s('ev-fra',l.fra);
   s('ev-sts',l.status); s('ev-tipo',l.tipo); s('ev-tap',l.tipoAp); s('ev-soc',l.soc);
-  s('ev-vrb',l.verba); s('ev-med',l.medico); s('ev-mes',l.mes); s('ev-dat',l.data);
+  s('ev-vrb',l.verba); if(document.getElementById('ev-med')) s('ev-med',l.medico); s('ev-mes',l.mes); s('ev-dat',l.data);
   s('ev-val',l.val); s('ev-prest',l.prest||''); s('ev-hcps',l.hcps||''); s('ev-palest',l.palest||'');
   onEvTipo();
   // Remove from local list and revert totals
